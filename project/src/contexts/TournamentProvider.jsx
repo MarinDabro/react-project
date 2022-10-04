@@ -23,18 +23,18 @@ function tournamentReducer(tournamentState, action) {
     }
     case 'teamWon': {
       return {
-        teams: tournamentState.teams,
+        ...tournamentState,
         scores: action.newscores,
         gamesList: action.gameslist
       }
     }
-    // case 'draw': {
-    //   return {
-    //     teams: tournamentState.teams,
-    //     scores: action.newscores2,
-    //     gamesList: action.gameslist2
-    //   }
-    // }
+    case 'draw': {
+      return {
+        ...tournamentState,
+        scores: action.newscores2,
+        gamesList: action.gameslist2
+      }
+    }
     case 'setGames': {
       return {
         ...tournamentState,
@@ -70,13 +70,13 @@ function TournamentContextProvider({children}) {
     })
   } 
 
-  // function updateDraw(newGamesList2, newScores2) {
-  //   tournamentDispatch({
-  //     type: 'draw',
-  //     gameslist2: newGamesList2,
-  //     newscores2: newScores2
-  //   })
-  // }
+  function updateDraw(newGamesList2, newScores2) {
+    tournamentDispatch({
+      type: 'draw',
+      gameslist2: newGamesList2,
+      newscores2: newScores2
+    })
+  }
 
   const setGamesList = (newGamesArr2) => {
     tournamentDispatch({
@@ -86,7 +86,7 @@ function TournamentContextProvider({children}) {
   }
 
   return (
-    <TournamentContext.Provider value={[tournamentState, setGamesList, setTeams, setScores, updateScore]}>
+    <TournamentContext.Provider value={[tournamentState, setGamesList, setTeams, setScores, updateScore, updateDraw]}>
       {children}
     </TournamentContext.Provider>
   )

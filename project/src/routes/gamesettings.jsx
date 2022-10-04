@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import GameContext from '../contexts/GameContext';
-import classes from './gamesettings.module.css';
 
 export default function GameSettings() {
   const [gameState, handleTeamSize, toggleTimer, handleTimerDuration, handlePointRewards] = useContext(GameContext);
@@ -19,7 +18,7 @@ export default function GameSettings() {
   const TimerSetting = () => {
     if (timer) {
       return (
-        <div className={classes.basheer}>
+        <div>
           <h4>{timerDuration} Minutes</h4>
           <button name='increase' onClick={changeTimerDuration}>+</button>
           <button name='decrease' onClick={changeTimerDuration}>-</button>
