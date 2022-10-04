@@ -27,6 +27,8 @@ export default function ActiveGame() {
   const teamWon = (e) => {
     const winner = e.target.value.replace(/\s+/g, '');
     const points = pointRewards[0];
+    console.log('hi')
+    console.log(pointRewards)
     const newScore = scores[winner] + parseInt(points);
     const newScores = scores;
     newScores[winner] = newScore;
@@ -35,14 +37,30 @@ export default function ActiveGame() {
     updateScore(newGamesList2, newScores);
   }
 
+  // const draw = (e) => {
+  //   const winner1 = e.target.value.split(',')[0].replace(/\s+/g, '');
+  //   const winner2 = e.target.value.split(',')[1].replace(/\s+/g, '');
+  //   const points = pointRewards[0];
+  //   const newScore = scores[winner1] + parseInt(points[1]);
+  //   const newScore2 = scores[winner2] + parseInt(points[1]);
+  //   const newScores = scores;
+  //   newScores[winner1] = newScore;
+  //   newScores[winner2] = newScore2;
+  //   let newGamesList3 = tournamentState.gamesList;
+  //   let newGamesList4 = newGamesList3.splice(1);
+  //   updateDraw(newGamesList4, newScores);
+  // }
+
   function Team1() {
     return (
-      <div>
+      <div style={{display: "flex", justifyContent: "space-around"}}>
         <div>
           <h4 key={team1[0]}>{team1[0]}</h4>
           <button onClick={teamWon} value={team1[0]}>Winner</button>
         </div>
-        <h5>VS</h5>
+        <div>
+          <h5>VS</h5>
+        </div>
         <div>
           <h4 key={team1[1]}>{team1[1]}</h4>
           <button onClick={teamWon} value={team1[1]}>Winner</button>
