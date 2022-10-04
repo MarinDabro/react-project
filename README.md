@@ -1,1 +1,3 @@
 # react-project
+
+npm install :)
