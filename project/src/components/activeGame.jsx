@@ -8,7 +8,7 @@ export default function ActiveGame() {
 
   const [gameState] = useContext(GameContext);
   const {pointRewards} = gameState;
-  const [tournamentState, updateScore] = useContext(TournamentContext);
+  const [tournamentState, updateScore, updateDraw] = useContext(TournamentContext);
   const {gamesList, scores} = tournamentState;
 
 
@@ -37,19 +37,23 @@ export default function ActiveGame() {
     updateScore(newGamesList2, newScores);
   }
 
-  // const draw = (e) => {
-  //   const winner1 = e.target.value.split(',')[0].replace(/\s+/g, '');
-  //   const winner2 = e.target.value.split(',')[1].replace(/\s+/g, '');
-  //   const points = pointRewards[0];
-  //   const newScore = scores[winner1] + parseInt(points[1]);
-  //   const newScore2 = scores[winner2] + parseInt(points[1]);
-  //   const newScores = scores;
-  //   newScores[winner1] = newScore;
-  //   newScores[winner2] = newScore2;
-  //   let newGamesList3 = tournamentState.gamesList;
-  //   let newGamesList4 = newGamesList3.splice(1);
-  //   updateDraw(newGamesList4, newScores);
-  // }
+  const draw = (e) => {
+    const winner1 = e.target.value.split(',')[0].replace(/\s+/g, '');
+    const winner2 = e.target.value.split(',')[1].replace(/\s+/g, '');
+    const pointRewards2 = [];
+    pointRewards.map(reward => {
+      pointRewards2.push(reward)
+    })
+    const points = pointRewards2[0][1];
+    const newScore = scores[winner1] + parseInt(points);
+    const newScore2 = scores[winner2] + parseInt(points);
+    const newScores = scores;
+    newScores[winner1] = newScore;
+    newScores[winner2] = newScore2;
+    let newGamesList3 = tournamentState.gamesList;
+    let newGamesList4 = newGamesList3.splice(1);
+    updateDraw(newGamesList4, newScores);
+  }
 
   function Team1() {
     return (
@@ -60,6 +64,7 @@ export default function ActiveGame() {
         </div>
         <div>
           <h5>VS</h5>
+          <button onClick={draw} value={[team1[0], team1[1]]}>Draw</button>
         </div>
         <div>
           <h4 key={team1[1]}>{team1[1]}</h4>
@@ -130,16 +135,16 @@ export default function ActiveGame() {
               team1 ? <Team1 /> : <div></div>
             }
           </div>
-          <div>
-            {
-              team2 ? <Team2 /> : <div></div>
-            }
-          </div>
-          <div>
-            {
-              team3 ? <Team3 /> : <div></div>
-            }
-          </div> 
+            <div>
+              {
+                team2 ? <Team2 /> : <div></div>
+              }
+            </div>
+            <div>
+              {
+                team3 ? <Team3 /> : <div></div>
+              }
+            </div> 
         </div>: <div>Just a Moment</div>
       }
     </div>

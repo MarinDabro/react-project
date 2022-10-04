@@ -44,7 +44,7 @@ export default function Tournament() {
         }
       }
     }
-
+    console.log(newTeams)
     setTeams(newTeams);
   }, [])
 
@@ -55,6 +55,7 @@ export default function Tournament() {
       scores2[`Team${i}`] = 0
     }
 
+    console.log(scores2)
     setScores(scores2);
   }, [])
 
@@ -73,6 +74,7 @@ export default function Tournament() {
             gamesArr.push([teamsArr[i], teamsArr[j]]);
         }
     }
+    console.log(gamesArr);
 
     let newGamesArr = [];
     
@@ -82,6 +84,8 @@ export default function Tournament() {
       }
     })
 
+    console.log(newGamesArr)
+
     newGamesArr.map((game, index) => {
       newGamesArr.map((game2, index2) => {
         if ( game[1] === game2[0] && game[0] === game2[1] ) {
@@ -89,6 +93,8 @@ export default function Tournament() {
         }
       })
     })
+
+    console.log(newGamesArr);
 
     let newGamesArr2 = []
 
